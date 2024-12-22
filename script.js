@@ -1,5 +1,5 @@
 async function getWeather() {
-    const apiKey = 92d9ab5ba64a25c6e97f504d865b526c; // Replace with OpenWeatherMap API key
+    const apiKey = '99fc5538b95d4df217d3469b95d68230'; // Replace with your active OpenWeatherMap API key
     const city = document.getElementById('city').value.trim();
 
     if (!city) {
@@ -7,21 +7,27 @@ async function getWeather() {
         return;
     }
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-    
+    const url = https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey};
+
     try {
+        console.log('Fetching data from:', url); // Log the API URL
         const response = await fetch(url);
+
         if (!response.ok) {
-            throw new Error('City not found');
+            throw new Error('City not found or invalid API key');
         }
 
         const data = await response.json();
+        console.log('API Response:', data); // Log the API response
+
         const { name, main: { temp }, weather } = data;
 
-        document.getElementById('cityName').innerText = `Weather in ${name}`;
-        document.getElementById('temperature').innerText = `Temperature: ${temp}°C`;
-        document.getElementById('condition').innerText = `Condition: ${weather[0].description}`;
+        // Update the HTML elements with fetched data
+        document.getElementById('cityName').innerText = Weather in ${name};
+        document.getElementById('temperature').innerText = Temperature: ${temp}°C;
+        document.getElementById('condition').innerText = Condition: ${weather[0].description};
     } catch (error) {
+        console.error('Error:', error); // Log any errors
         alert(error.message);
     }
 }
